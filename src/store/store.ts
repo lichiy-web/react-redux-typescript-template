@@ -10,15 +10,16 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { appReducer, type AppState } from './app/slice';
 // import { usersReducer, type UsersState } from './users/slice';
 import { handleAsyncThunkMiddleware } from './middlewares/appLoadingMiddlware';
+import type { AppState } from '@/store/app/types';
+import { appReducer } from '@/store/app';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['isDarkTheme', 'isChatOpen'],
+  whitelist: ['isDarkTheme'],
 };
 
 export const store = configureStore({

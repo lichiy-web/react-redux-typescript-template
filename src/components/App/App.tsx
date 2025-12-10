@@ -10,7 +10,9 @@ function App() {
       <AppLanguageSync />
       <h1>App</h1>
       <p>{t('common:welcome')}</p>
-      <button onClick={() => i18n.changeLanguage({ en: 'uk', uk: 'en' }[locale])}>{locale}</button>
+      <button type="button" onClick={() => i18n.changeLanguage({ en: 'uk', uk: 'en' }[locale])}>
+        {locale}
+      </button>
     </>
   );
 }

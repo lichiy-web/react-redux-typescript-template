@@ -21,13 +21,6 @@ export type Locale = keyof typeof dictionaries;
 /** Generic for an IDE autocomplete while typing path of dictionary key as a string,
  * @example t('common.') -> IDE autocomplete: ['buttons', 'welcome', 'userName']
  */
-// export type ObjectKeyPaths<T> = T extends object
-//   ? {
-//       [K in keyof T & string]: T[K] extends object
-//         ? `${K}` | `${K}.${ObjectKeyPaths<T[K]>}`
-//         : `${K}`;
-//     }[keyof T & string]
-//   : never;
 
 type NamespaceKeys<T> = {
   [K in keyof T & string]: T[K] extends object ? `${K}:${NestedKeys<T[K]>}` : never;

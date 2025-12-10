@@ -1,19 +1,12 @@
+import type { AppState } from '@/store/app/types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-export interface AppState {
-  isLoading: boolean;
-  error: { error: Error; message: string } | Error | string | null;
-  usersSearchQuery: string;
-  isDarkTheme: boolean;
-  isChatOpen: boolean;
-}
 
 const initialState: AppState = {
   isLoading: false,
   error: null,
   usersSearchQuery: '',
+  locale: null,
   isDarkTheme: false,
-  isChatOpen: false,
 };
 
 const slice = createSlice({
@@ -38,12 +31,11 @@ const slice = createSlice({
     ) => {
       state.usersSearchQuery = newSearchQuery;
     },
-    toggleChat: state => {
-      state.isChatOpen = !state.isChatOpen;
+    setLocale: (state, { payload: locale }: PayloadAction<AppState['locale']>) => {
+      state.locale = locale;
     },
   },
 });
 
-export const { enableLoader, disableLoader, setError, unsetError, setSearchQuery, toggleChat } =
-  slice.actions;
+export const appActions = slice.actions;
 export const appReducer = slice.reducer;

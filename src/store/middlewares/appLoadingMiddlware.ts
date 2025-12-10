@@ -1,6 +1,9 @@
 import { isFulfilled, isPending, isRejected } from '@reduxjs/toolkit';
 import type { Middleware } from 'redux';
-import { disableLoader, enableLoader, setError, type AppState } from '../app/slice';
+import type { AppState } from '@/store/app/types';
+import { appActions } from '@/store/app';
+
+const { enableLoader, disableLoader, setError } = appActions;
 
 export const handleAsyncThunkMiddleware: Middleware = store => next => action => {
   if (isPending(action)) {
