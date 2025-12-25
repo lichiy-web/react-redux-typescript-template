@@ -10,9 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { stateApi } from '@/store/stateApi';
 import { handleAsyncThunkMiddleware } from './middlewares/appLoadingMiddlware';
 import { Feature, type AppState } from '@/store/types';
-import stateApi from '@/store';
 
 const persistConfig = {
   key: 'root',
