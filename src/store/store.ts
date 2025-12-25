@@ -10,10 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import { usersReducer, type UsersState } from './users/slice';
 import { handleAsyncThunkMiddleware } from './middlewares/appLoadingMiddlware';
-import type { AppState } from '@/store/app/types';
-import { appReducer } from '@/store/app';
+import { Feature, type AppState } from '@/store/types';
+import stateApi from '@/store';
 
 const persistConfig = {
   key: 'root',
@@ -24,8 +23,8 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    // users: usersReducer,
-    app: persistReducer<AppState>(persistConfig, appReducer),
+    [Feature.app]: persistReducer<AppState>(persistConfig, stateApi[Feature.app].reducer),
+    [Feature.auth]: stateApi[Feature.auth].reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -37,9 +36,5 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export interface RootState {
-  app: AppState;
-  // users: UsersState;
-}
-
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

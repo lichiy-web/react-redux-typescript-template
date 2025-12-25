@@ -1,8 +1,8 @@
-import type { AppState } from '@/store/app/types';
+import type { AuthState } from '@/store/auth/types';
 import { Feature } from '@/store/types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: AppState = {
+const initialState: AuthState = {
   isLoading: false,
   error: null,
   usersSearchQuery: '',
@@ -10,8 +10,8 @@ const initialState: AppState = {
   isDarkTheme: false,
 };
 
-export const appSlice = createSlice({
-  name: Feature.app,
+export const authSlice = createSlice({
+  name: Feature.auth,
   initialState,
   reducers: {
     enableLoader: state => {
@@ -20,7 +20,7 @@ export const appSlice = createSlice({
     disableLoader: state => {
       state.isLoading = false;
     },
-    setError: (state, { payload: error }: PayloadAction<AppState['error']>) => {
+    setError: (state, { payload: error }: PayloadAction<AuthState['error']>) => {
       state.error = error instanceof Error ? error.message : error;
     },
     unsetError: state => {
@@ -28,11 +28,11 @@ export const appSlice = createSlice({
     },
     setSearchQuery: (
       state,
-      { payload: newSearchQuery }: PayloadAction<AppState['usersSearchQuery']>
+      { payload: newSearchQuery }: PayloadAction<AuthState['usersSearchQuery']>
     ) => {
       state.usersSearchQuery = newSearchQuery;
     },
-    setLocale: (state, { payload: locale }: PayloadAction<AppState['locale']>) => {
+    setLocale: (state, { payload: locale }: PayloadAction<AuthState['locale']>) => {
       state.locale = locale;
     },
   },

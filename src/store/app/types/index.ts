@@ -1,1 +1,1 @@
-export * from '@/store/app/types/AppState';
+export * from '@/store/app/types/State';
